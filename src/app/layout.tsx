@@ -9,18 +9,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [darkMode, setDarkMode] = useState(localStorage.getItem("darkMode"))
+  const [themeMode, setDarkMode] = useState(localStorage.getItem("darkMode"))
 
   const onChangeDarkMode = () => {
     console.log("Testing")
     setDarkMode((currentState) => currentState === "dark" ? "light" : "dark")
-    localStorage.setItem("darkMode", darkMode === "dark" ? "light" : "dark")
+    localStorage.setItem("darkMode", themeMode === "dark" ? "light" : "dark")
   }
 
   return (
-    <html lang="en" className={darkMode ? darkMode : "dark"}>
+    <html lang="en" className={themeMode ? themeMode : "dark"}>
       <body>
-        <Header onChangeDarkMode={onChangeDarkMode}/>
+        <Header themeMode={themeMode ?? ""} onChangeDarkMode={onChangeDarkMode}/>
         {children}
       </body>
     </html>
